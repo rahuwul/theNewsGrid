@@ -6,7 +6,7 @@ function App() {
   return (
     <div className="App">
    <Navbar/>
-   <div className="grid grid-cols-2 gap-2">
+   <div className="flex">
    <Sidebar/>
    <Gridbody/>
    </div>
