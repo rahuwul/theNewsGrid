@@ -15,7 +15,7 @@ export default function Sidebar() {
                 href="#"
                 class="flex items-center h-14 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <span class="ms-3">Dashboard</span>
+                <span class="ms-3">General</span>
               </a>
             </li>
             <li>
@@ -23,7 +23,7 @@ export default function Sidebar() {
                 href="#"
                 class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <span class="flex-1 ms-3 whitespace-nowrap">Kanban</span>
+                <span class="flex-1 ms-3 whitespace-nowrap">Entertainment</span>
               </a>
             </li>
             <li>
