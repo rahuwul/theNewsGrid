@@ -41,8 +41,8 @@ const formattedTime = hours >= 12 ?
      {truncatedDescription}
     </div>
     <div className="flex items-center justify-between">
-      <span className="text-[0.6rem] font-bold text-gray-900 text-[#7FFF9B]">{props.source}</span>
-      <span className="text-[0.6rem] font-bold text-gray-900 text-[#7FFF9B]">{formattedTime}</span>
+      <span className="text-[0.6rem] font-bold  text-[#7FFF9B]">{props.source}</span>
+      <span className="text-[0.6rem] font-bold  text-[#7FFF9B]">{formattedTime}</span>
     </div>
   </div>
 </div>
