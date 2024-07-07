@@ -2,12 +2,12 @@ import React from "react";
 
 export default function Sidebar() {
   const items = [
-    { id: 1, name: 'General', route: '/' },
-    { id: 2, name: 'Business', route: '/business' },
-    { id: 3, name: 'Entertainment', route: '/entertainment' },
-    { id: 4, name: 'Health', route: '/health' },
-    { id: 5, name: 'Science', route: '/science' },
-    { id: 6, name: 'Technology', route: '/technology' }
+    { name: 'General', route: '/' },
+    { name: 'Business', route: '/business' },
+    { name: 'Entertainment', route: '/entertainment' },
+    { name: 'Health', route: '/health' },
+    { name: 'Science', route: '/science' },
+    { name: 'Technology', route: '/technology' }
   ];
   return (
     <>
@@ -22,7 +22,7 @@ export default function Sidebar() {
         items.map((item,index)=>(
           <li key={index}>
               <a
-                href={item.route}
+                href="#"
                 class="flex items-center h-14 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
                 <span class="ms-3">{item.name}</span>
