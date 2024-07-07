@@ -1,6 +1,14 @@
 import React from "react";
 
 export default function Sidebar() {
+  const items = [
+    { id: 1, name: 'General', route: '/' },
+    { id: 2, name: 'Business', route: '/business' },
+    { id: 3, name: 'Entertainment', route: '/entertainment' },
+    { id: 4, name: 'Health', route: '/health' },
+    { id: 5, name: 'Science', route: '/science' },
+    { id: 6, name: 'Technology', route: '/technology' }
+  ];
   return (
     <>
       <aside
@@ -10,78 +18,18 @@ export default function Sidebar() {
       >
         <div class="h-full px-3 py-4 rounded-2xl overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul class="space-y-2 font-medium">
-            <li>
+      {
+        items.map((item,index)=>(
+          <li key={index}>
               <a
-                href="#"
+                href={item.route}
                 class="flex items-center h-14 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
               >
-                <span class="ms-3">General</span>
+                <span class="ms-3">{item.name}</span>
               </a>
             </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Entertainment</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                class="flex h-14 items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group"
-              >
-                <span class="flex-1 ms-3 whitespace-nowrap">Inbox</span>
-              </a>
-            </li>
+        ))
+      }
           </ul>
         </div>
       </aside>
