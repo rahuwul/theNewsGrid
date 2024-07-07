@@ -23,7 +23,7 @@ export default function Sidebar() {
           <li key={index}>
               <a
                 href="#"
-                class="flex items-center h-14 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#7FFF9B] hover:text-[#171717] group"
+                class="flex items-center h-14 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#7FFF9B] hover:text-[#171717] group transition ease-out duration-300"
               >
                 <span class="ms-3">{item.name}</span>
               </a>

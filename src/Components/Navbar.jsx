@@ -25,7 +25,7 @@ const formattedDate = `${dayFormatted} ${monthName} ${year}`;
   <nav className="bg-[#313131] h-24   fixed w-full z-80 top-0 start-0 ">
   <div className="mx-4 my-2 h-20 bg-[#171717] rounded-xl flex items-center justify-between  p-4">
     <a href="#" className="flex items-center space-x-3 rtl:space-x-reverse">
-      <span id='logo' className="self-center max-sm:text-lg text-2xl font-semibold whitespace-nowrap dark:text-white"><span id='the'>the</span>NewsGrid</span>
+      <span id='logo' className="self-center max-sm:text-lg text-2xl font-semibold whitespace-nowrap text-[#e9e9e9] hover:text-[#7FFF9B] transition ease-out duration-300 "><span id='the'>the</span>NewsGrid</span>
     </a>
     <div className="hidden md:block">
       <h1 className="text-md font-semibold dark:text-white">{formattedDate}</h1>
