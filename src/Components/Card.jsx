@@ -3,12 +3,16 @@ import React from 'react';
 
 export default function Card(props) {
   const truncateText = (text, maxChars) => {
+    if (!text) {
+      return '';
+    }
+    
     if (text.length > maxChars) {
       return text.slice(0, maxChars) + '...';
     }
+    
     return text;
   };
-
   const description = props.description;
   const truncatedDescription = truncateText(description, 150);
 

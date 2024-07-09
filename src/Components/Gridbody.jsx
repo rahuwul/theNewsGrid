@@ -4,7 +4,7 @@ import data from '../SampleOutput.json'
 
 export default function Gridbody(props) {
 
- /*  const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   
   useEffect(() => {
@@ -12,7 +12,7 @@ export default function Gridbody(props) {
   }, [props.country, props.category, props.apikey]); // Dependency array ensures useEffect runs on prop change
 
   const fetchNews = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=general&apiKey=e243412e09af41afa03e28dfa5ea65e8`;
+    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=e243412e09af41afa03e28dfa5ea65e8`;
     setLoading(true);
 
     try {
@@ -26,14 +26,13 @@ export default function Gridbody(props) {
     }
 
     setLoading(false);
-  }; */
-
+  }; 
   return (
     <>
 <div className='flex  justify-center items-center  max-lg:ml-[18rem] max-md:ml-[16rem] max-sm:ml-[3rem] ml-[20rem] mr-4 mt-24 overflow-y-auto'>
   <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-2 mx-auto'>
-  {data.articles.map((item, index) => (
-        <Card key={index} imageURL={item.urlToImage} title={item.title} newsUrl={item.url} description={item.description} source={item.source.name} timestamp={item.publishedAt} />
+  {articles.map((item, index) => (
+      item.title!='[Removed]' && <Card key={index} imageURL={item.urlToImage} title={item.title} newsUrl={item.url} description={item.description} source={item.source.name} timestamp={item.publishedAt} />
       ))}
   </div>
 </div>
