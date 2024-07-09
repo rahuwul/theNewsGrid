@@ -1,5 +1,5 @@
 import React from 'react';
-
+import altImage from '../assets/noimage.svg';
 
 export default function Card(props) {
   const truncateText = (text, maxChars) => {
@@ -32,7 +32,7 @@ export default function Card(props) {
   return (
     <div className="w-full  p-4 max-w-sm rounded-lg shadow bg-[#171717] hover:bg-[#222222]">
       <div className="overflow-hidden rounded-lg h-36 max-md:h-44 " >
-        <a href={props.newsUrl} target="_blank" rel="noopener noreferrer"><img className='w-full h-full object-cover' src={props.imageURL} alt="news image" /></a>
+        <a href={props.newsUrl} target="_blank" rel="noopener noreferrer"><img className='w-full h-full object-cover' src={props.imageURL?props.imageURL:altImage} alt="news image" /></a>
       </div>
       <div className="px-1 py-2">
         <a href={props.newsUrl} target="_blank" rel="noopener noreferrer">
@@ -42,7 +42,7 @@ export default function Card(props) {
           </div>
         </a>
         <div className="flex text-[#E9E9E9] cursor-pointer text-xs items-center mt-1 mb-2">
-          {truncatedDescription}
+          {truncatedDescription?truncatedDescription:'The specifics for this item have not been provided'}
         </div>
         <div className="flex items-center justify-between">
           <span className="text-[0.6rem] cursor-pointer font-bold text-[#7FFF9B]">{props.source}</span>

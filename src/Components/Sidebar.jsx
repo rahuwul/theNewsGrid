@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
+import globe from '../assets/globe.svg';
+import ind from '../assets/indiaflag.svg';
+import us from '../assets/usa flag.svg';
 
 export default function Sidebar() {
   const items = [
@@ -32,7 +35,7 @@ export default function Sidebar() {
                   to={item.route}
                   onClick={() => handleClick(item.route)}
                   className={`flex items-center h-14 p-2 rounded-lg group transition ease-out duration-300 ${
-                    activeItem === item.route
+                    activeItem === item.route 
                       ? 'text-[#171717] bg-[#7FFF9B]'
                       : 'text-white  hover:bg-[#7FFF9B] hover:text-[#171717]'
                   }`}
@@ -42,6 +45,11 @@ export default function Sidebar() {
               </li>
             ))}
           </ul>
+          <div className="grid grid-cols-3 gap-1 px-10 py-5">
+            <img src={ind} className="w-10"/>
+            <img src={us} className="w-10"/>
+            <img src={globe} className="w-10"/>
+          </div>
         </div>
       </aside>
     </>

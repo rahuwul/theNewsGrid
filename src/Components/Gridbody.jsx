@@ -12,7 +12,7 @@ export default function Gridbody(props) {
   }, [props.country, props.category, props.apikey]); // Dependency array ensures useEffect runs on prop change
 
   const fetchNews = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?country=us&category=${props.category}&apiKey=e243412e09af41afa03e28dfa5ea65e8`;
+    let url = `https://newsapi.org/v2/top-headlines?language=en&country=&category=${props.category}&apiKey=e243412e09af41afa03e28dfa5ea65e8`;
     setLoading(true);
 
     try {
