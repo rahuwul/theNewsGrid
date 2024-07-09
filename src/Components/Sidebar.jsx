@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import {Link} from 'react-router-dom';
 
 export default function Sidebar() {
   const items = [
@@ -27,8 +28,8 @@ export default function Sidebar() {
           <ul className="space-y-2 font-medium">
             {items.map((item, index) => (
               <li key={index}>
-                <a
-                  href={item.route}
+                <Link
+                  to={item.route}
                   onClick={() => handleClick(item.route)}
                   className={`flex items-center h-14 p-2 rounded-lg group transition ease-out duration-300 ${
                     activeItem === item.route
@@ -37,7 +38,7 @@ export default function Sidebar() {
                   }`}
                 >
                   <span className="ms-3">{item.name}</span>
-                </a>
+                </Link>
               </li>
             ))}
           </ul>

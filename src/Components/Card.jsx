@@ -32,17 +32,17 @@ export default function Card(props) {
       </div>
       <div className="px-1 py-2">
         <a href={props.newsUrl} target="_blank" rel="noopener noreferrer">
-          <div className="text-md font-semibold text-white hover:text-[#7FFF9B] transition ease-out duration-300">
+          <div className="text-md font-semibold text-[#E9E9E9] hover:text-[#7FFF9B] transition ease-out duration-300">
             {truncatedTitle}&nbsp;&nbsp;&nbsp;
             <i className="fa-solid fa-arrow-turn-up  text-[#7FFF9B]"></i>
           </div>
         </a>
-        <div className="flex text-white text-xs items-center mt-1 mb-2">
+        <div className="flex text-[#E9E9E9] cursor-pointer text-xs items-center mt-1 mb-2">
           {truncatedDescription}
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-[0.6rem] font-bold text-[#7FFF9B]">{props.source}</span>
-          <span className="text-[0.6rem] font-bold text-[#7FFF9B]">{formattedTime}</span>
+          <span className="text-[0.6rem] cursor-pointer font-bold text-[#7FFF9B]">{props.source}</span>
+          <span className="text-[0.6rem] cursor-pointer font-bold text-[#7FFF9B]">{formattedTime}</span>
         </div>
       </div>
     </div>
