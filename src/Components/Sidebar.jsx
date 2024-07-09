@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 export default function Sidebar() {
   const items = [
@@ -9,32 +9,40 @@ export default function Sidebar() {
     { name: 'Science', route: '/science' },
     { name: 'Technology', route: '/technology' }
   ];
+
+  const [activeItem, setActiveItem] = useState(items[0].route);
+
+  const handleClick = (route) => {
+    setActiveItem(route);
+  };
+
   return (
     <>
       <aside
         id="default-sidebar"
-        class="fixed left-4 top-24 z-40 w-72 max-lg:w-64 max-md:w-56 transition-transform -translate-x-full sm:translate-x-0"
+        className="fixed left-4 top-24 z-40 w-72 max-lg:w-64 max-md:w-56 transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
-        <div class="h-full px-3 py-4 rounded-2xl overflow-y-auto bg-[#171717]">
-          <ul class="space-y-2 font-medium">
-      {
-        items.map((item,index)=>(
-          <li key={index}>
-              <a
-                href="#"
-                class="flex items-center h-14 p-2 text-gray-900 rounded-lg dark:text-white hover:bg-[#7FFF9B] hover:text-[#171717] group transition ease-out duration-300"
-              >
-                <span class="ms-3">{item.name}</span>
-              </a>
-            </li>
-        ))
-      }
+        <div className="h-full px-3 py-4 rounded-2xl overflow-y-auto bg-[#171717]">
+          <ul className="space-y-2 font-medium">
+            {items.map((item, index) => (
+              <li key={index}>
+                <a
+                  href={item.route}
+                  onClick={() => handleClick(item.route)}
+                  className={`flex items-center h-14 p-2 rounded-lg group transition ease-out duration-300 ${
+                    activeItem === item.route
+                      ? 'text-[#171717] bg-[#7FFF9B]'
+                      : 'text-white  hover:bg-[#7FFF9B] hover:text-[#171717]'
+                  }`}
+                >
+                  <span className="ms-3">{item.name}</span>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </aside>
-      
     </>
   );
 }
-/* BCFFCB */

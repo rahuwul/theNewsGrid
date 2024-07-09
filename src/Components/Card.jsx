@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 export default function Card(props) {
   const truncateText = (text, maxChars) => {
     if (text.length > maxChars) {
@@ -25,12 +26,12 @@ export default function Card(props) {
     : `${hours === 0 ? 12 : hours}:${minutes < 10 ? '0' + minutes : minutes} AM`;
 
   return (
-    <div className="w-full p-4 max-w-sm rounded-lg shadow bg-[#171717]">
-      <div className="overflow-hidden rounded-lg">
-        <img className="object-cover" src={props.imageURL} alt="news image" />
+    <div className="w-full  p-4 max-w-sm rounded-lg shadow bg-[#171717] hover:bg-[#222222]">
+      <div className="overflow-hidden rounded-lg h-36 max-md:h-44 " >
+        <a href={props.newsUrl} target="_blank" rel="noopener noreferrer"><img className='w-full h-full object-cover' src={props.imageURL} alt="news image" /></a>
       </div>
       <div className="px-1 py-2">
-        <a href="#">
+        <a href={props.newsUrl} target="_blank" rel="noopener noreferrer">
           <div className="text-md font-semibold text-white hover:text-[#7FFF9B] transition ease-out duration-300">
             {truncatedTitle}&nbsp;&nbsp;&nbsp;
             <i className="fa-solid fa-arrow-turn-up  text-[#7FFF9B]"></i>

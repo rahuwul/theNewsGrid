@@ -4,12 +4,13 @@ import Sidebar from "./Components/Sidebar";
 
 
 function App() {
+  const apikey=process.env.REACT_APP_API_KEY;
   return (
     <div className="App">
    <Navbar/>
    <div className="flex">
    <Sidebar/>
-   <Gridbody/>
+   <Gridbody apikey={apikey}/>
    </div>
     </div>
   );
