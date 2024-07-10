@@ -4,7 +4,7 @@ import globe from '../assets/globe.svg';
 import ind from '../assets/indiaflag.svg';
 import us from '../assets/usa flag.svg';
 
-export default function Sidebar() {
+export default function Sidebar({onCountryChange,selectedCountry }) {
   const items = [
     { name: 'General', route: '/' },
     { name: 'Business', route: '/business' },
@@ -15,10 +15,17 @@ export default function Sidebar() {
   ];
 
   const [activeItem, setActiveItem] = useState(items[0].route);
+  
 
   const handleClick = (route) => {
     setActiveItem(route);
   };
+  
+  const handleCountryClick = (countryCode) => {
+    onCountryChange(countryCode);
+ 
+  };
+
 
   return (
     <>
@@ -45,10 +52,10 @@ export default function Sidebar() {
               </li>
             ))}
           </ul>
-          <div className="grid grid-cols-3 gap-1 px-10 py-5">
-            <img src={ind} className="w-10"/>
-            <img src={us} className="w-10"/>
-            <img src={globe} className="w-10"/>
+          <div className="grid grid-cols-3 gap-2 px-10 py-5">
+            <img src={ind} onClick={() => handleCountryClick('in')} alt="India"  className={` flex items-center justify-center ${selectedCountry === 'in' ? 'border-4 border-[#7FFF9B] rounded-sm' : ''}  w-10 cursor-pointer`}/>
+            <img src={us} onClick={() => handleCountryClick('us')} alt="USA"  className={` flex items-center justify-center ${selectedCountry === 'us' ? 'border-4 border-[#7FFF9B] rounded-sm' : ''}  w-10 cursor-pointer`}/>
+            <img src={globe} onClick={() => handleCountryClick('')} alt="Global" className={` flex items-center justify-center ${selectedCountry === '' ? 'border-4 border-[#7FFF9B] rounded-sm' : ''}  w-10 cursor-pointer`}/>
           </div>
         </div>
       </aside>
