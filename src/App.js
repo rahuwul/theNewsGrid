@@ -7,7 +7,7 @@ import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 
 function App() {
   const apikey=process.env.REACT_APP_API_KEY;
-  const [country, setCountry] = useState('');
+  const [country, setCountry] = useState('in');
 
   const handleCountryChange = (countryCode) => {
     setCountry(countryCode);

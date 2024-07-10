@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import {Link} from 'react-router-dom';
-import globe from '../assets/globe.svg';
 import ind from '../assets/indiaflag.svg';
 import us from '../assets/usa flag.svg';
 
@@ -29,6 +28,7 @@ export default function Sidebar({onCountryChange,selectedCountry }) {
 
   return (
     <>
+ 
       <aside
         id="default-sidebar"
         className="fixed left-4 top-24 z-40 w-72 max-lg:w-64 max-md:w-56 transition-transform -translate-x-full sm:translate-x-0"
@@ -52,11 +52,18 @@ export default function Sidebar({onCountryChange,selectedCountry }) {
               </li>
             ))}
           </ul>
-          <div className="grid grid-cols-3 gap-2 px-10 py-5">
-            <img src={ind} onClick={() => handleCountryClick('in')} alt="India"  className={` flex items-center justify-center ${selectedCountry === 'in' ? 'border-4 border-[#7FFF9B] rounded-sm' : ''}  w-10 cursor-pointer`}/>
-            <img src={us} onClick={() => handleCountryClick('us')} alt="USA"  className={` flex items-center justify-center ${selectedCountry === 'us' ? 'border-4 border-[#7FFF9B] rounded-sm' : ''}  w-10 cursor-pointer`}/>
-            <img src={globe} onClick={() => handleCountryClick('')} alt="Global" className={` flex items-center justify-center ${selectedCountry === '' ? 'border-4 border-[#7FFF9B] rounded-sm' : ''}  w-10 cursor-pointer`}/>
-          </div>
+  <div className="grid grid-cols-2 gap-1 px-20 py-5">
+  <div className="flex flex-col items-center">
+    <img src={ind} onClick={() => handleCountryClick('in')} alt="India" className={`flex items-center justify-center ${selectedCountry === 'in' ? 'outline outline-4 outline-[#7FFF9B] rounded-sm' : ''} w-10 cursor-pointer`} />
+    <span className={`text-xs pt-2 ${selectedCountry === 'in' ? 'text-[#7FFF9B]' : 'text-white'}`}>India</span>
+  </div>
+  <div className="flex flex-col items-center">
+    <img src={us} onClick={() => handleCountryClick('us')} alt="USA" className={`flex items-center justify-center ${selectedCountry === 'us' ? 'outline outline-4 outline-[#7FFF9B] rounded-sm' : ''} w-10 cursor-pointer`} />
+    <span className={`text-xs pt-2 ${selectedCountry === 'us' ? 'text-[#7FFF9B]' : 'text-white'}`}>USA</span>
+  </div>
+  
+</div>
+
         </div>
       </aside>
     </>
