@@ -36,7 +36,7 @@ export default function Sidebar({ onCountryChange, selectedCountry }) {
         data-drawer-toggle="default-sidebar"
         aria-controls="default-sidebar"
         type="button"
-        className={`relative w-16 z-50 top-20 -left-4 m-4 p-2 ${sidebarOpen?"rotate-180 translate-x-60 transition-transform ":"rotate-0 transition-transform "} text-gray-500 rounded-lg sm:hidden`}
+        className={`fixed w-16 z-50 top-20 -left-4 m-4 p-2 ${sidebarOpen?"rotate-180 translate-x-60 transition-transform ":"rotate-0 transition-transform "} text-gray-500 rounded-lg sm:hidden`}
         onClick={toggleSidebar} // Toggle sidebar visibility on button click
       >
         <span className="sr-only">Open sidebar</span>
@@ -56,7 +56,7 @@ export default function Sidebar({ onCountryChange, selectedCountry }) {
                 <Link
                   to={item.route}
                   onClick={() => handleClick(item.route)}
-                  className={`flex items-center h-14 p-2 rounded-lg group transition ease-out duration-300 ${
+                  className={`flex items-center h-14 md:h-16 p-2 rounded-lg group transition ease-out duration-300 ${
                     activeItem === item.route
                       ? 'text-[#171717] bg-[#7FFF9B]'
                       : 'text-white hover:bg-[#7FFF9B] hover:text-[#171717]'
@@ -67,7 +67,7 @@ export default function Sidebar({ onCountryChange, selectedCountry }) {
               </li>
             ))}
           </ul>
-          <div className="grid grid-cols-2 gap-1 px-20 py-5">
+          <div className="grid grid-row-2 gap-2  md:grid-cols-2 px-20 py-5">
             <div className="flex flex-col items-center">
               <img
                 src={ind}

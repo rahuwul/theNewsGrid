@@ -1,46 +1,77 @@
-import React, {useState,useEffect} from 'react'
-import Card from './Card'
-import data from '../SampleOutput.json'
+import React, { useState, useEffect } from 'react';
+import Card from './Card';
 import Spinner from './Spinner';
-import backArrow from '../assets/Back Arrow.svg'
+import InfiniteScroll from 'react-infinite-scroll-component';
+
+const apiKey = '424e7725a04c4aff9bdd1bb15fc002cb';
 
 export default function Gridbody(props) {
-
- const [articles, setArticles] = useState([]);
+  const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
-  
-  useEffect(() => {
-    fetchNews();
-  }, [props.country, props.category, props.apikey]); // Dependency array ensures useEffect runs on prop change
+  const [page, setPage] = useState(1);
+  const [totalResults, setTotalResults] = useState(0);
+  const pageSize = 10;
 
-  const fetchNews = async () => {
-    let url = `https://newsapi.org/v2/top-headlines?language=en&country=${props.country}&category=${props.category}&apiKey=424e7725a04c4aff9bdd1bb15fc002cb`;
+  useEffect(() => {
+    setPage(1); // Reset page to 1 on props change
+    fetchNews(1); // Fetch news for the first page
+  }, [props.country, props.category]);
+
+  const fetchNews = async (page) => {
+    const url = `https://newsapi.org/v2/top-headlines?language=en&country=${props.country}&category=${props.category}&apiKey=${apiKey}&page=${page}&pageSize=${pageSize}`;
     setLoading(true);
 
     try {
-      let response = await fetch(url);
-      let parsedData = await response.json();
-
-      setArticles(parsedData.articles);
-      console.log(articles);
+      const response = await fetch(url);
+      const parsedData = await response.json();
+      if (page === 1) {
+        setArticles(parsedData.articles); // Reset articles for the first page
+      } else {
+        setArticles((prevArticles) => [...prevArticles, ...parsedData.articles]);
+      }
+      setTotalResults(parsedData.totalResults);
     } catch (error) {
       console.error('Error fetching news:', error);
     }
 
     setLoading(false);
-  };  
+  };
+
+  const fetchMoreData = async () => {
+    const nextPage = page + 1;
+    setPage(nextPage);
+    await fetchNews(nextPage);
+  };
+
   return (
     <>
-
-<div className='flex  justify-center items-center  max-lg:ml-[18rem] max-md:ml-[16rem] max-sm:ml-[3rem] ml-[20rem] mr-4 mt-24 overflow-y-auto'>
-  {loading?<div className='flex justify-center items-center h-screen w-screen'><Spinner/></div>:
-  <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4  gap-2 mx-auto'>
-  {articles?.map((item, index) => (
-      item.title!=='[Removed]' && <Card key={index} imageURL={item.urlToImage} title={item.title} newsUrl={item.url} description={item.description} source={item.source.name} timestamp={item.publishedAt} />
-      ))}
-  </div>}
-</div>
-
+     {/* {loading && <div className='relative top-96 left-96'><Spinner/></div> } */}
+     <div className="flex justify-center items-center max-lg:ml-[18rem] max-md:ml-[16rem] max-sm:ml-[3rem] ml-[20rem] mr-4 mt-24 overflow-y-auto">
+      <InfiniteScroll
+        dataLength={articles.length}
+        next={fetchMoreData}
+        hasMore={articles.length !== totalResults}
+        /* loader={<div ><Spinner/></div>} */
+      >
+        
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-2 mx-auto">
+            {articles?.map((item, index) => (
+              item.title !== '[Removed]' && (
+                <Card
+                  key={index}
+                  imageURL={item.urlToImage}
+                  title={item.title}
+                  newsUrl={item.url}
+                  description={item.description}
+                  source={item.source.name}
+                  timestamp={item.publishedAt}
+                />
+              )
+            ))}
+          </div>
+       
+      </InfiniteScroll>
+      </div>
     </>
-  )
+  );
 }
