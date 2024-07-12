@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const apiKey = '424e7725a04c4aff9bdd1bb15fc002cb';
 
-export default function Gridbody(props) {
+export default function Gridbody(props,{dark}) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -18,7 +18,7 @@ export default function Gridbody(props) {
   }, [props.country, props.category]);
 
   const fetchNews = async (page) => {
-    const url = `https://newsapi.org/v2/top-headlines?language=en&country=${props.country}&category=${props.category}&apiKey=${apiKey}&page=${page}&pageSize=${pageSize}`;
+    const url = `https://newsapi.org/v2/top-headlines?language=en&country=${props.country}&category=${props.category}&apiKey=5d22ecf106a44b949f23380d5cbf808e&page=${page}&pageSize=${pageSize}`;
     setLoading(true);
 
     try {
@@ -65,6 +65,7 @@ export default function Gridbody(props) {
                   description={item.description}
                   source={item.source.name}
                   timestamp={item.publishedAt}
+                  dark={dark}
                 />
               )
             ))}

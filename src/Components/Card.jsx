@@ -1,7 +1,7 @@
 import React from 'react';
 import altImage from '../assets/noimage.svg';
 
-export default function Card(props) {
+export default function Card(props,{dark}) {
   const truncateText = (text, maxChars) => {
     if (!text) {
       return '';

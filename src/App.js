@@ -3,7 +3,7 @@ import Navbar from "./Components/Navbar";
 import Gridbody from "./Components/Gridbody";
 import Sidebar from "./Components/Sidebar";
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-
+import Mode from './Components/Mode';
 
 function App() {
   const apikey=process.env.REACT_APP_API_KEY;
@@ -12,19 +12,26 @@ function App() {
   const handleCountryChange = (countryCode) => {
     setCountry(countryCode);
   };
+  const [dark,setDark]=useState(true);
+  
+  const changeMode = () => {
+    setDark(!dark);
+  };
+
   return (
-    <Router>
+    <Router >
     <div className="App">
-   <Navbar/>
+      <Mode changeMode={changeMode} dark={dark}/>
+   <Navbar  dark={dark}/>
    <div className="flex">
    <Sidebar onCountryChange={handleCountryChange} selectedCountry={country}/>
   <Routes>
-    <Route path='/' element={<Gridbody category='general' country={country}/>}></Route>
-    <Route path='/business' element={<Gridbody category='business' country={country}/>}></Route>
-    <Route path='/entertainment' element={<Gridbody category='entertainment' country={country}/>}></Route>
-    <Route path='/health' element={<Gridbody category='health' country={country}/>}></Route>
-    <Route path='/science' element={<Gridbody category='science' country={country}/>}></Route>
-    <Route path='/technology' element={<Gridbody category='technology' country={country}/>}></Route>
+    <Route path='/' element={<Gridbody category='general' country={country} dark={dark}/>}></Route>
+    <Route path='/business' element={<Gridbody category='business' country={country} dark={dark}/>}></Route>
+    <Route path='/entertainment' element={<Gridbody category='entertainment' country={country} dark={dark}/>}></Route>
+    <Route path='/health' element={<Gridbody category='health' country={country} dark={dark}/>}></Route>
+    <Route path='/science' element={<Gridbody category='science' country={country} dark={dark}/>}></Route>
+    <Route path='/technology' element={<Gridbody category='technology' country={country} dark={dark}/>}></Route>
   </Routes>
    </div>
     </div>
