@@ -18,7 +18,7 @@ function App() {
     setDark(!dark);
   };
   document.body.style.backgroundColor = dark?"#313131":"#A2E0D1";
- 
+
 
   return (
     <Router >
@@ -28,12 +28,12 @@ function App() {
    <div className="flex">
    <Sidebar onCountryChange={handleCountryChange} selectedCountry={country} dark={dark}/>
   <Routes>
-    <Route path='/' element={<Gridbody category='general' country={country} dark={dark}/>}></Route>
-    <Route path='/business' element={<Gridbody category='business' country={country} dark={dark}/>}></Route>
-    <Route path='/entertainment' element={<Gridbody category='entertainment' country={country} dark={dark}/>}></Route>
-    <Route path='/health' element={<Gridbody category='health' country={country} dark={dark}/>}></Route>
-    <Route path='/science' element={<Gridbody category='science' country={country} dark={dark}/>}></Route>
-    <Route path='/technology' element={<Gridbody category='technology' country={country} dark={dark}/>}></Route>
+    <Route path='/' element={<Gridbody category='general' country={country} dark={dark} apikey={apikey}/>}></Route>
+    <Route path='/business' element={<Gridbody category='business' country={country} dark={dark} apikey={apikey}/>}></Route>
+    <Route path='/entertainment' element={<Gridbody category='entertainment' country={country} apikey={apikey} dark={dark}/>}></Route>
+    <Route path='/health' element={<Gridbody category='health' country={country} dark={dark} apikey={apikey}/>}></Route>
+    <Route path='/science' element={<Gridbody category='science' country={country} dark={dark} apikey={apikey}/>}></Route>
+    <Route path='/technology' element={<Gridbody category='technology' country={country} dark={dark} apikey={apikey}/>}></Route>
   </Routes>
    </div>
     </div>
