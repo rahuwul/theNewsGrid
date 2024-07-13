@@ -14,6 +14,7 @@ export default function Card(props) {
     
     return text;
   };
+
   const description = props.description;
   const truncatedDescription = truncateText(description, 150);
 
@@ -31,25 +32,25 @@ export default function Card(props) {
     : `${hours === 0 ? 12 : hours}:${minutes < 10 ? '0' + minutes : minutes} AM`;
 
   return (
-    <div className={`w-full p-4 max-w-sm rounded-lg  ${props.dark?'bg-[#171717] hover:bg-[#222222] shadow ':'bg-[#f5f5f5] hover:bg-[#ededed] shadow-md'} `}>
-      <div className={`overflow-hidden rounded-lg h-36 max-md:h-44`}>
+    <div className={`w-full p-4 max-w-sm rounded-lg ${props.dark ? 'bg-[#171717] hover:bg-[#222222] shadow' : 'bg-[#f5f5f5] hover:bg-[#ededed] shadow-md'}`}>
+      <div className="overflow-hidden rounded-lg h-36 max-md:h-44">
         <a href={props.newsUrl} target="_blank" rel="noopener noreferrer">
-          <img className={`w-full h-full object-cover`} src={props.imageURL ? props.imageURL : noImage} alt={altImage} />
+          <img className="w-full h-full object-cover" src={props.imageURL ? props.imageURL : noImage} alt={altImage} />
         </a>
       </div>
-      <div className={`px-1 py-2`}>
+      <div className="px-1 py-2">
         <a href={props.newsUrl} target="_blank" rel="noopener noreferrer">
-          <div className={`text-md font-semibold ${props.dark?'text-[#E9E9E9] hover:text-[#7FFF9B]':'text-[#171717] hover:text-[#235347]'}  transition ease-out duration-300`}>
+          <div className={`text-md font-semibold ${props.dark ? 'text-[#E9E9E9] hover:text-[#7FFF9B]' : 'text-[#171717] hover:text-[#235347]'} transition ease-out duration-300`}>
             {truncatedTitle}&nbsp;&nbsp;&nbsp;
-            <i className={`fa-solid fa-arrow-turn-up ${props.dark?'text-[#7FFF9B]':'text-[#235347]'}`}></i>
+            <i className={`fa-solid fa-arrow-turn-up ${props.dark ? 'text-[#7FFF9B]' : 'text-[#235347]'}`}></i>
           </div>
         </a>
-        <div className={`flex  ${props.dark?'text-[#E9E9E9]':'text-[#171717]'}  cursor-pointer text-xs items-center mt-1 mb-2`}>
+        <div className={`flex ${props.dark ? 'text-[#E9E9E9]' : 'text-[#171717]'} cursor-pointer text-xs items-center mt-1 mb-2`}>
           {truncatedDescription ? truncatedDescription : 'The specifics for this item have not been provided'}
         </div>
-        <div className={`flex items-center justify-between`}>
-          <span className={`text-[0.6rem] cursor-pointer font-bold ${props.dark?'text-[#7FFF9B]':'text-[#235347]'} `}>{props.source}</span>
-          <span className={`text-[0.6rem] cursor-pointer font-bold ${props.dark?'text-[#7FFF9B]':'text-[#235347]'} `}>{formattedTime}</span>
+        <div className="flex items-center justify-between">
+          <span className={`text-[0.6rem] cursor-pointer font-bold ${props.dark ? 'text-[#7FFF9B]' : 'text-[#235347]'} `}>{props.source}</span>
+          <span className={`text-[0.6rem] cursor-pointer font-bold ${props.dark ? 'text-[#7FFF9B]' : 'text-[#235347]'} `}>{formattedTime}</span>
         </div>
       </div>
     </div>

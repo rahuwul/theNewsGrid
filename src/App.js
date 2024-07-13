@@ -17,7 +17,7 @@ function App() {
   const changeMode = () => {
     setDark(!dark);
   };
-  document.body.style.backgroundColor = dark?"#313131":"#E1F5F0";
+  document.body.style.backgroundColor = dark?"#313131":"#A2E0D1";
  
 
   return (
