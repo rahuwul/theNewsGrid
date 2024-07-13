@@ -17,6 +17,8 @@ function App() {
   const changeMode = () => {
     setDark(!dark);
   };
+  document.body.style.backgroundColor = dark?"#313131":"#E1F5F0";
+ 
 
   return (
     <Router >
@@ -24,7 +26,7 @@ function App() {
       <Mode changeMode={changeMode} dark={dark}/>
    <Navbar  dark={dark}/>
    <div className="flex">
-   <Sidebar onCountryChange={handleCountryChange} selectedCountry={country}/>
+   <Sidebar onCountryChange={handleCountryChange} selectedCountry={country} dark={dark}/>
   <Routes>
     <Route path='/' element={<Gridbody category='general' country={country} dark={dark}/>}></Route>
     <Route path='/business' element={<Gridbody category='business' country={country} dark={dark}/>}></Route>

@@ -5,7 +5,7 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 
 const apiKey = '424e7725a04c4aff9bdd1bb15fc002cb';
 
-export default function Gridbody(props,{dark}) {
+export default function Gridbody(props) {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -65,7 +65,7 @@ export default function Gridbody(props,{dark}) {
                   description={item.description}
                   source={item.source.name}
                   timestamp={item.publishedAt}
-                  dark={dark}
+                  dark={props.dark}
                 />
               )
             ))}
