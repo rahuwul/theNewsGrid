@@ -66,6 +66,7 @@ export default function Gridbody(props) {
                   source={item.source.name}
                   timestamp={item.publishedAt}
                   dark={props.dark}
+                  onSaveNews={props.onSaveNews}
                 />
               )
             ))}
