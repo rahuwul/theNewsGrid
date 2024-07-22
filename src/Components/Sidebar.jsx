@@ -146,7 +146,7 @@ export default function Sidebar({ onCountryChange, selectedCountry, dark }) {
             <li>
               <Link
                 to="/saved"
-                onClick={() => handleClick("saved")}
+                onClick={() => {handleClick("saved");onCountryChange("");}}
                 className={`flex items-center h-10 md:h-12 p-2 rounded-lg group transition ease-out duration-300 ${
                   activeItem === "saved"
                     ? dark
@@ -164,7 +164,7 @@ export default function Sidebar({ onCountryChange, selectedCountry, dark }) {
             <li>
               <Link
                 to="/about"
-                onClick={() => handleClick("about")}
+                onClick={() => {handleClick("about");onCountryChange("");}}
                 className={`flex items-center h-10 md:h-12 p-2 rounded-lg group transition ease-out duration-300 ${
                   activeItem === "about"
                     ? dark

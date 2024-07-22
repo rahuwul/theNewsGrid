@@ -1,4 +1,5 @@
-import React, { useState , useEffect, useRef} from 'react';
+ import React, { useState , useEffect, useRef} from 'react';
+import axios from 'axios';
 import Navbar from "./Components/Navbar";
 import Gridbody from "./Components/Gridbody";
 import Sidebar from "./Components/Sidebar";
@@ -9,8 +10,8 @@ import Saved from './Components/Saved';
 function App() {
   const apikey=process.env.REACT_APP_API_KEY;
   const [country, setCountry] = useState('in');
-  
   const [savedNews, setSavedNews] = useState([]);
+  const [savedData,setSavedData]=useState([]);
   const savedNewsRef = useRef(savedNews);
   useEffect(() => {
     savedNewsRef.current = savedNews;
@@ -33,6 +34,19 @@ function App() {
   };
   document.body.style.backgroundColor = dark?"#313131":"#A2E0D1";
 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/api/data');
+        setSavedData(response.data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   return (
     <Router >
@@ -48,7 +62,7 @@ function App() {
     <Route path='/health' element={<Gridbody category='health' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
     <Route path='/science' element={<Gridbody category='science' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
     <Route path='/technology' element={<Gridbody category='technology' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/saved' element={<Saved savedNews={savedNews} dark={dark}/>}></Route>
+    <Route path='/saved' element={<Saved savedData={savedData} dark={dark}/>}></Route>
   </Routes>
    </div>
     </div>
@@ -57,3 +71,5 @@ function App() {
 }
 
 export default App;
+
+
