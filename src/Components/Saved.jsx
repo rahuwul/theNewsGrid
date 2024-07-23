@@ -11,12 +11,12 @@ export default function Saved(props) {
         {savedNews?.map((item, index) => (
           <SavedCard
             key= {item._id} 
-            imageURL={item.imageURL}
+            imageURL={item.urlToImage}
             title={item.title}
-            newsUrl={item.newsUrl}
+            newsUrl={item.url}
             description={item.description}
             source={item.source.name}
-            timestamp={item.timestamp}
+            timestamp={item.publishedAt}
             dark={props.dark}
           />
         ))}

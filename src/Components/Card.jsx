@@ -33,14 +33,14 @@ export default function Card(props) {
 
   const handleSaveNews = () => {
     const newsData = {
+      source: { id:null,name: props.source },
       title: props.title,
       description: props.description,
-      imageURL: props.imageURL,
-      newsUrl: props.newsUrl,
-      source: props.source,
-      timestamp: props.timestamp,
+      url: props.newsUrl,
+      urlToImage: props.imageURL,
+      publishedAt: props.timestamp,
     };
-
+    
     props.onSaveNews(newsData);
     setSaved(true);
   };

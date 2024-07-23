@@ -1,4 +1,4 @@
- import React, { useState , useEffect, useRef} from 'react';
+ import React, { useState , useEffect} from 'react';
 import axios from 'axios';
 import Navbar from "./Components/Navbar";
 import Gridbody from "./Components/Gridbody";
@@ -10,20 +10,17 @@ import Saved from './Components/Saved';
 function App() {
   const apikey=process.env.REACT_APP_API_KEY;
   const [country, setCountry] = useState('in');
-  const [savedNews, setSavedNews] = useState([]);
+
   const [savedData,setSavedData]=useState([]);
-  const savedNewsRef = useRef(savedNews);
-  useEffect(() => {
-    savedNewsRef.current = savedNews;
-  }, [savedNews]);
+
+
   const handleSaveNews = (newsData) => {
-    setSavedNews((prevSavedNews) => {
-      const updatedNews = [...prevSavedNews, newsData];
-      console.log("All saved news:", updatedNews);
-      savedNewsRef.current = updatedNews;
-      return updatedNews;
-    });
+     axios.post('http://localhost:3001/api/data', newsData)
+      .then(response => setSavedData([...savedData, response.data]))
+      .catch(error => console.error("cant save news",error));
   };
+  
+
   const handleCountryChange = (countryCode) => {
     setCountry(countryCode);
   };

@@ -1,32 +1,53 @@
 const express = require('express');
 const cors = require('cors');
-const { MongoClient } = require('mongodb');
+const mongoose = require('mongoose');
 const app = express();
 const port = 3001;
 
-const uri = "mongodb://localhost:27017";
-const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
+const uri = "mongodb://localhost:27017/SavedNews"; // Ensure you use the correct URI with the database name
 
 app.use(cors()); // Enable CORS
 app.use(express.json());
 
-let database;
-client.connect()
+const newsSchema = new mongoose.Schema({
+  source: {
+    id: String,
+    name: String
+  },
+  title: String,
+  description: String,
+  url: String,
+  urlToImage: String,
+  publishedAt: Date
+});
+
+const News = mongoose.model('News', newsSchema);
+
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => {
-    console.log('Connected to MongoDB');
-    database = client.db("SavedNews");
+    console.log('Connected to MongoDB using Mongoose');
   })
   .catch(err => {
-    console.error('Failed to connect to MongoDB', err);
+    console.error('Failed to connect to MongoDB using Mongoose', err);
   });
 
 app.get('/api/data', async (req, res) => {
   try {
-    const collection = database.collection("news");
-    const data = await collection.find({}).toArray();
+    const data = await News.find({});
     res.json(data);
   } catch (error) {
     res.status(500).json({ error: error.message });
+  }
+});
+
+app.post('/api/data', async (req, res) => {
+  const newsData = req.body;
+  try {
+    const newNews = new News(newsData);
+    const savedNews = await newNews.save();
+    res.status(201).json(savedNews);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
   }
 });
 
@@ -35,7 +56,7 @@ app.listen(port, () => {
 });
 
 process.on('SIGINT', async () => {
-  console.log('SIGINT received, closing MongoDB connection');
-  await client.close();
+  console.log('SIGINT received, closing MongoDB connections');
+  await mongoose.connection.close();
   process.exit(0);
 });

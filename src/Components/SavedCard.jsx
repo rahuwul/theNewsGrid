@@ -14,7 +14,7 @@ export default function Card(props) {
     
     return text;
   };
-  console.log(props.timestamp);
+ 
   const description = props.description;
   const truncatedDescription = truncateText(description, 150);
 
