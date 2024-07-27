@@ -49,7 +49,7 @@ export default function Sidebar({ onCountryChange, selectedCountry, dark }) {
       </button>
       <aside
         id="default-sidebar"
-        className={`fixed left-4 top-24 z-40 w-72 max-lg:w-64 max-md:w-56 transition-transform ${
+        className={`fixed left-4  top-24 z-40 w-72 max-lg:w-64 max-md:w-56 transition-transform ${
           sidebarOpen ? "" : "-translate-x-full sm:translate-x-0"
         }`}
         aria-label="Sidebar"
@@ -80,26 +80,27 @@ export default function Sidebar({ onCountryChange, selectedCountry, dark }) {
               </li>
             ))}
           </ul>
-          <div className="grid grid-cols-2 gap-2 px-10 md:px-20 pt-4">
-            <div className="flex flex-col items-center">
+          <div className={`h-px w-full my-2 opacity-25  ${dark?"bg-[#e9e9e9]":"bg-[#171717]"}`}></div>
+          <div className="grid grid-cols-2 cursor-pointer gap-2 items-center justify-center py-2 " >
+            <div className={`flex flex-col py-2 rounded-lg items-center 
+              ${selectedCountry==="in"?
+                dark
+                ? " bg-[#7FFF9B]"
+                : " bg-[#235347]"
+              : ""
+              }`} onClick={() => handleCountryClick("in")}>
               <img
                 src={ind}
-                onClick={() => handleCountryClick("in")}
+      
                 alt="India"
-                className={`flex items-center justify-center ${
-                  selectedCountry === "in"
-                    ? dark
-                      ? "outline outline-4 outline-[#7FFF9B] rounded-sm"
-                      : "outline outline-4 outline-[#235347] rounded-sm"
-                    : ""
-                } w-10 cursor-pointer`}
+                className={`flex items-center justify-center rounded-sm w-8 cursor-pointer`}
               />
               <span
-                className={`text-xs pt-2 ${
+                className={`text-xs pt-1 font-bold ${
                   selectedCountry === "in"
                     ? dark
-                      ? "text-[#7FFF9B] font-bold"
-                      : "text-[#235347] font-bold"
+                      ? "text-[#235347]"
+                      : "text-[#e9e9e9]"
                     : dark
                     ? "text-[#e9e9e9]"
                     : "text-[#171717]"
@@ -108,25 +109,25 @@ export default function Sidebar({ onCountryChange, selectedCountry, dark }) {
                 India
               </span>
             </div>
-            <div className="flex flex-col items-center">
+            <div className={`flex flex-col cursor-pointer py-2 rounded-lg items-center 
+              ${selectedCountry==="us"?
+                 dark
+                ? " bg-[#7FFF9B]"
+                : " bg-[#235347]"
+              : ""
+              }`} onClick={() => handleCountryClick("us")}>
               <img
                 src={us}
-                onClick={() => handleCountryClick("us")}
+                
                 alt="USA"
-                className={`flex items-center justify-center ${
-                  selectedCountry === "us"
-                    ? dark
-                      ? "outline outline-4 outline-[#7FFF9B] rounded-sm"
-                      : "outline outline-4 outline-[#235347] rounded-sm"
-                    : ""
-                } w-10 cursor-pointer`}
+                className={`flex items-center justify-center rounded-sm w-8 cursor-pointer`}
               />
               <span
-                className={`text-xs pt-2 ${
+                className={`text-xs pt-1  font-bold ${
                   selectedCountry === "us"
                     ? dark
-                      ? "text-[#7FFF9B] font-bold "
-                      : "text-[#235347] font-bold"
+                      ? "text-[#235347] "
+                      : "text-[#e9e9e9] "
                     : dark
                     ? "text-[#e9e9e9]"
                     : "text-[#171717]"
