@@ -45,10 +45,7 @@ export default function Card(props) {
     setSaved(true);
   };
   const handleUnsaveNews = () => {
-    const savedNews = JSON.parse(localStorage.getItem('savedNews')) || [];
-    const updatedSavedNews = savedNews.filter(news => news.newsUrl !== props.newsUrl);
-    localStorage.setItem('savedNews', JSON.stringify(updatedSavedNews));
-    setSaved(false);
+   props.onUnsaveNews()
   };
 
   const handleCopyLink = () => {

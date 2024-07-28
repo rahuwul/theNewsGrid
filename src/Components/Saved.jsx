@@ -11,6 +11,7 @@ export default function Saved(props) {
         {savedNews?.map((item, index) => (
           <SavedCard
             key= {item._id} 
+            newsId={item._id}
             imageURL={item.urlToImage}
             title={item.title}
             newsUrl={item.url}
@@ -18,6 +19,7 @@ export default function Saved(props) {
             source={item.source.name}
             timestamp={item.publishedAt}
             dark={props.dark}
+            onUnsaveNews={props.onUnsaveNews}
           />
         ))}
       </div>

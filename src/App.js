@@ -19,7 +19,15 @@ function App() {
       .then(response => setSavedData([...savedData, response.data]))
       .catch(error => console.error("cant save news",error));
   };
-  
+  const handleUnsaveNews = (newsId) => {
+    axios.delete(`http://localhost:3001/api/data/${newsId}`)
+      .then(response => {
+        setSavedData(savedData.filter(news => news._id !== newsId));
+        console.log("News deleted successfully:", response.data);
+      })
+      .catch(error => console.error("Can't delete news", error));
+  };
+
 
   const handleCountryChange = (countryCode) => {
     setCountry(countryCode);
@@ -53,13 +61,13 @@ function App() {
    <div className="flex">
    <Sidebar onCountryChange={handleCountryChange} selectedCountry={country} dark={dark}/>
   <Routes>
-    <Route path='/' element={<Gridbody category='general' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/business' element={<Gridbody category='business' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/entertainment' element={<Gridbody category='entertainment' country={country} apikey={apikey} dark={dark} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/health' element={<Gridbody category='health' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/science' element={<Gridbody category='science' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/technology' element={<Gridbody category='technology' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews}/>}></Route>
-    <Route path='/saved' element={<Saved savedData={savedData} dark={dark}/>}></Route>
+    <Route path='/' element={<Gridbody category='general' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews} onUnsaveNews={handleUnsaveNews}/>}></Route>
+    <Route path='/business' element={<Gridbody category='business' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews} onUnsaveNews={handleUnsaveNews}/>}></Route>
+    <Route path='/entertainment' element={<Gridbody category='entertainment' country={country} apikey={apikey} dark={dark} onSaveNews={handleSaveNews} onUnsaveNews={handleUnsaveNews}/>}></Route>
+    <Route path='/health' element={<Gridbody category='health' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews} onUnsaveNews={handleUnsaveNews}/>}></Route>
+    <Route path='/science' element={<Gridbody category='science' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews} onUnsaveNews={handleUnsaveNews}/>}></Route>
+    <Route path='/technology' element={<Gridbody category='technology' country={country} dark={dark} apikey={apikey} onSaveNews={handleSaveNews} onUnsaveNews={handleUnsaveNews}/>}></Route>
+    <Route path='/saved' element={<Saved savedData={savedData} onUnsaveNews={handleUnsaveNews} dark={dark}/>}></Route>
   </Routes>
    </div>
     </div>

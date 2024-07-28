@@ -1,8 +1,26 @@
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import altImage from '../assets/noimage.svg';
 import noImage from '../assets/noimage.svg';
+import Contextmenu from './Contextmenu';
 
 export default function Card(props) {
+  const [clicked, setClicked] = useState(false);
+  const [points, setPoints] = useState({
+    x: 0,
+    y: 0,
+  });
+
+  useEffect(() => {
+    const handleClick = () => setClicked(false);
+    window.addEventListener("click", handleClick);
+    return () => {
+      window.removeEventListener("click", handleClick);
+    };
+  }, []);
+  const handleUnsaveNews = () => {
+    props.onUnsaveNews(props.newsId);
+   };
+
   const truncateText = (text, maxChars) => {
     if (!text) {
       return '';
@@ -32,7 +50,17 @@ export default function Card(props) {
     : `${hours === 0 ? 12 : hours}:${minutes < 10 ? '0' + minutes : minutes} AM`;
 
   return (
-    <div className={`w-full p-4 max-w-sm rounded-lg ${props.dark ? 'bg-[#171717] hover:bg-[#222222] shadow' : 'bg-[#f5f5f5] hover:bg-[#ededed] shadow-md'}`}>
+    <div 
+     onContextMenu={(e) => {
+          e.preventDefault();
+          console.log('Context menu event triggered'); // Debug log
+          setClicked(true);
+          setPoints({
+            x: e.pageX,
+            y: e.pageY,
+          });
+        }}
+    className={`w-full p-4 max-w-sm rounded-lg ${props.dark ? 'bg-[#171717] hover:bg-[#222222] shadow' : 'bg-[#f5f5f5] hover:bg-[#ededed] shadow-md'}`}>
       <div className="overflow-hidden rounded-lg h-36 max-md:h-44">
         <a href={props.newsUrl} target="_blank" rel="noopener noreferrer">
           <img className="w-full h-full object-cover" src={props.imageURL ? props.imageURL : noImage} alt={altImage} />
@@ -53,6 +81,7 @@ export default function Card(props) {
           <span className={`text-[0.6rem] cursor-pointer font-bold ${props.dark ? 'text-[#7FFF9B]' : 'text-[#235347]'} `}>{formattedTime}</span>
         </div>
       </div>
+      {clicked && <Contextmenu top={points.y} left={points.x} saved={true} onUnsave={handleUnsaveNews} />}
     </div>
   );
 }

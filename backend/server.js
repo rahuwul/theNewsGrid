@@ -34,8 +34,10 @@ mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 app.get('/api/data', async (req, res) => {
   try {
     const data = await News.find({});
+    console.log('Data retrieved'); // Log retrieved data
     res.json(data);
   } catch (error) {
+    console.error('Error retrieving data:', error); // Log error details
     res.status(500).json({ error: error.message });
   }
 });
@@ -45,8 +47,24 @@ app.post('/api/data', async (req, res) => {
   try {
     const newNews = new News(newsData);
     const savedNews = await newNews.save();
+    console.log('Data saved'); 
     res.status(201).json(savedNews);
   } catch (err) {
+    console.error('Error saving data:', err); // Log error details
+    res.status(500).json({ error: err.message });
+  }
+});
+app.delete('/api/data/:id', async (req, res) => {
+  const { id } = req.params;
+  try {
+    const deletedNews = await News.findByIdAndDelete(id);
+    if (!deletedNews) {
+      return res.status(404).json({ error: 'News not found' });
+    }
+    console.log('Data deleted');
+    res.status(200).json(deletedNews);
+  } catch (err) {
+    console.error('Error deleting data:', err); // Log error details
     res.status(500).json({ error: err.message });
   }
 });
@@ -59,16 +77,4 @@ process.on('SIGINT', async () => {
   console.log('SIGINT received, closing MongoDB connections');
   await mongoose.connection.close();
   process.exit(0);
-});
-
-const http = require('http');
-
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader('Content-Type', 'text/plain');
-  res.end('Hello, Node.js!');
-});
-
-server.listen(3000, () => {
-  console.log('Server running at http://localhost:3000/');
 });
